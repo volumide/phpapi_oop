@@ -19,23 +19,23 @@
     ];
 
     if (isset($_GET['update'])) {
-        echo (new Contacts('users', $db_table , $fillables))->update();
+        echo (new Controller('users', $db_table , $fillables))->update();
         return;
     }
     
     if (isset($_GET['delete'])) {
-        echo (new Contacts('users', $db_table))->delete();
+        echo (new Controller('users', $db_table))->delete();
         return;
     }
 
     if (isset($_GET['id'])) {
-        echo (new Contacts('users', $db_table))->getSingle();
+        echo (new Controller('users', $db_table))->readSingle();
         return;
     }
 
     if(isset($_GET['all'])){
-        echo (new Contacts('users', $db_table))->getMessage();
+        echo (new Controller('users', $db_table))->read();
     }
 
-    echo (new Contacts('users', $db_table , $fillables))->sendMessage();
+    echo (new Controller('users', $db_table , $fillables))->create();
 

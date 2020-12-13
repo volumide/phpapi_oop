@@ -1,5 +1,5 @@
 <?php
-    class Contacts{
+    class Controller{
         private string $db_table;
         private object $conn;
         private array $fillables;
@@ -13,7 +13,7 @@
         }
         
         // send data to database
-        public function sendMessage():  string {
+        public function create():  string {
             error_reporting(0);
             $input = json_decode(file_get_contents("php://input"));
 
@@ -39,7 +39,7 @@
         }
 
         // get all data from database
-        public function getMessage(): string {
+        public function read(): string {
             $query = "SELECT * FROM $this->db_table ORDER BY id";
             $result = $this->conn->query($query);
             if(mysqli_num_rows($result) < 1 ){
@@ -61,7 +61,7 @@
         }
 
         // get data by id
-        public function getSingle(): string {
+        public function readSingle(): string {
             if (!isset($_GET['id'])) {
                return $this->getMessage();
             }
